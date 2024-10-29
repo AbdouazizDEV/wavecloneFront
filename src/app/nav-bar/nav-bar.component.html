@@ -1,0 +1,48 @@
+<nav class="bg-white p-2 flex justify-between items-center shadow-md">
+  <!-- Logo avec une icône et un texte -->
+  <div class="flex items-center space-x-2">
+    <!-- Barre de recherche avec l'icône -->
+    <div class="relative flex items-center">
+      <!-- Icône de recherche, cliquable pour afficher/masquer le champ de recherche -->
+      <svg (click)="toggleSearch()" class="w-6 h-6 text-gray-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+  
+      <!-- Champ de recherche, visible seulement si `isSearchVisible` est vrai -->
+      <input *ngIf="isSearchVisible()" type="text" placeholder="Rechercher" class="bg-gray-200 ml-2 p-2 rounded-full pl-8 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+  </div>
+  
+
+  <!-- Informations de l'utilisateur et icône pour le menu déroulant -->
+  <div class="relative flex items-center space-x-2">
+    <div class="w-8 h-8 bg-blue-500 text-white flex items-center justify-center rounded-full">
+      <span class="font-bold">D</span>
+    </div>
+    <div class="text-black">
+      <p class="font-medium">Dior</p>
+      <p class="text-sm text-gray-500">Web Builders</p>
+    </div>
+
+    <!-- Icône flèche avec action de clic pour ouvrir le menu déroulant -->
+    <div (click)="toggleDropdown()" class="cursor-pointer">
+      <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+
+    <!-- Menu déroulant, visible seulement si `isDropdownOpen` est vrai -->
+    <div *ngIf="isDropdownOpen()" class="absolute right-0 top-10 mt-2 w-48 bg-blue-500 border border-gray-200 rounded-md shadow-lg">
+      <ul class="py-1">
+        <li class="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer" (click)="logout()">Déconnexion</li>
+      </ul>
+      
+      <!-- Bouton pour ouvrir la sidebar sur mobile -->
+      <button (click)="toggleSidebar()" class="absolute top-0 right-0 p-2">
+        <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
