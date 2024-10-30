@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import {PaiementEnMasseComponent} from "../paiement-en-masse/paiement-en-masse.component";
 import {ResumeDesPaiementsComponent} from "../resume-des-paiements/resume-des-paiements.component";
@@ -12,5 +13,6 @@ import{BoutonConfirmerComponent} from "../bouton-confirmer/bouton-confirmer.comp
   styleUrl: './contener.component.css'
 })
 export class ContenerComponent {
-
+  // Your code here
+  
 }
