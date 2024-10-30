@@ -1,0 +1,44 @@
+<aside class="bg-slate-50 text-black w-64 h-full p-4 lg:block hidden">
+  <div class="w-full h-16 flex items-center space-x-4">
+    <div class="w-8 h-8 bg-blue-500 text-white flex items-center justify-center rounded-full">
+      <img class="w-22 h-29" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOKxIPYZLqBJeKt2WTLZ3ZU-Z9nQkRBXPGJQ&s" alt="Logo">
+    </div>
+    <span class="text-black font-semibold text-lg">Wave</span>
+  </div>
+  <nav>
+    <ul class="space-y-4">
+      <li class="flex items-center space-x-3 hover:bg-sky-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-sky-400">home</mat-icon>
+        <a href="/accueil" routerLinkActive="text-blue-500">Accueil</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-green-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-green-500">account_circle</mat-icon>
+        <a href="/paiement-en-masse" routerLinkActive="text-green-500">Paiement en masse</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-blue-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-blue-500">receipt_long</mat-icon>
+        <a href="/factures" routerLinkActive="text-blue-500">Factures</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-red-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-red-500">payments</mat-icon>
+        <a href="/transactions" routerLinkActive="text-red-500">Transactions</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-pink-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-pink-500">analytics</mat-icon>
+        <a href="/rapports" routerLinkActive="text-pink-500">Rapports</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-indigo-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-indigo-500">account_balance</mat-icon>
+        <a href="/fonds" routerLinkActive="text-indigo-500">Fonds</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-purple-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-purple-700">contact_mail</mat-icon>
+        <a href="/contact" routerLinkActive="text-purple-500">Contact</a>
+      </li>
+      <li class="flex items-center space-x-3 hover:bg-amber-300 p-2 rounded-md cursor-pointer">
+        <mat-icon class="text-yellow-400">settings</mat-icon>
+        <a href="/parametres" routerLinkActive="text-yellow-500">Paramètres</a>
+      </li>
+    </ul>
+  </nav>
+</aside>

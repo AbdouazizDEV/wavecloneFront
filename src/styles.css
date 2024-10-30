@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ */
+
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ /* styles.css ou styles.scss */
+@import 'primeicons/primeicons.css';
+
+/* Masquer le sidebar sur mobile */
+aside {
+    display: block;
+  }
+  
+  .mobile-navbar {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    aside {
+      display: none;
+    }
+  
+    .mobile-navbar {
+      display: flex;
+    }
+  }
+  @import 'primeicons/primeicons.css';
+@import 'otros-estilos.css';
+
+/* Resto de las reglas CSS */
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }

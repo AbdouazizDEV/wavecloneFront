@@ -1,0 +1,22 @@
+<div class="flex h-screen">
+    <!-- Sidebar visible uniquement sur les écrans larges -->
+    <app-sidebar class="flex-none"></app-sidebar>
+  
+    <!-- Contenu principal avec NavBar et router-outlet pour les routes -->
+    <div class="flex-grow flex flex-col">
+      <app-nav-bar></app-nav-bar>
+  
+      <!-- Zone de contenu principal où les composants de route s'afficheront -->
+      <div class="flex-grow overflow-auto p-4 bg-gray-100g">
+       
+        <!-- Zone de bas de page -->
+        <!-- <app-contener>  </app-contener>   -->
+       <p>Accueil works!</p>
+  
+      </div>
+    </div>
+  
+    <!-- Barre de navigation mobile, visible uniquement sur les petits écrans -->
+    <app-mobile-navbar class="md:hidden"></app-mobile-navbar>  
+  </div>
+  
