@@ -1,0 +1,10 @@
+/* Styles pour le modal */
+.fixed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .relative {
+    position: relative;
+  }
+  

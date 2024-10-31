@@ -1,0 +1,27 @@
+<div *ngIf="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white w-full max-w-md p-6 rounded-md shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Sélectionnez les usagers</h2>
+      
+      <!-- Liste des usagers avec checkbox -->
+      <ul class="space-y-2">
+        <li *ngFor="let usager of usagers">
+          <label class="flex items-center space-x-3">
+            <input 
+              type="checkbox"
+              [checked]="selectedUsagers().has(usager.id)"
+              (change)="toggleSelection(usager.id)"
+              class="form-checkbox h-5 w-5 text-blue-600"
+            />
+            <span>{{ usager.nom }}</span>
+          </label>
+        </li>
+      </ul>
+  
+      <!-- Boutons de confirmation et d'annulation -->
+      <div class="flex justify-end space-x-4 mt-4">
+        <button (click)="close.emit()" class="btn bg-gray-500 text-white px-4 py-2 rounded-md">Annuler</button>
+        <button (click)="onConfirm()" class="btn bg-blue-500 text-white px-4 py-2 rounded-md">Confirmer</button>
+      </div>
+    </div>
+  </div>
+  

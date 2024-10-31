@@ -1,23 +1,147 @@
-<div class="flex h-screen">
-    <!-- Sidebar visible uniquement sur les écrans larges -->
-    <app-sidebar class="flex-none"></app-sidebar>
-  
-    <!-- Contenu principal avec NavBar et router-outlet pour les routes -->
-    <div class="flex-grow flex flex-col">
-      <app-nav-bar></app-nav-bar>
-  
-      <!-- Zone de contenu principal où les composants de route s'afficheront -->
-      <div class="flex-grow overflow-auto p-4 bg-gray-100g">
-       
-        <!-- Zone de bas de page -->
-        <!-- <app-contener>  </app-contener>   -->
-         <p>paiement-en-masse works!</p>
-       
-  
+<div class="flex h-screen bg-gray-50">
+  <!-- Sidebar visible uniquement sur les écrans larges -->
+  <app-sidebar class="hidden lg:block flex-none"></app-sidebar>
+
+  <!-- Contenu principal avec NavBar et router-outlet pour les routes -->
+  <div class="flex-grow flex flex-col">
+    <app-nav-bar></app-nav-bar>
+
+    <!-- Zone de contenu principal -->
+    <div class="flex-grow overflow-auto p-6 bg-gray-50">
+
+      <!-- Titre principal -->
+      <h1 class="text-2xl font-semibold text-center mb-6">Paiement en masse</h1>
+
+      <!-- Progression des étapes -->
+      <div class="flex justify-center mb-6">
+        <ul class="flex items-center space-x-8">
+          <!-- Etape 1: Révision -->
+          <li class="relative flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold">
+              1
+            </div>
+            <div class="absolute top-1/2 -right-10 transform -translate-y-1/2 w-8 h-1 bg-blue-600"></div>
+            <span class="text-gray-700 font-medium">Révision du paiement de masse</span>
+          </li>
+      
+          <!-- Etape 2: Confirmer -->
+          <li class="relative flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold">
+              2
+            </div>
+            <span class="text-gray-700 font-medium">Confirmer les détails</span>
+            <div class="absolute top-1/2 -right-10 transform -translate-y-1/2 w-8 h-1 bg-gray-300"></div>
+          </li>
+      
+          <!-- Etape 3: Soumettre -->
+          <li class="relative flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-semibold">
+              3
+            </div>
+            <span class="text-gray-500 font-medium">Soumettre paiement en masse</span>
+          </li>
+        </ul>
+      </div>
+      
+
+      <!-- Notification d'état du paiement -->
+      <div class="bg-blue-100 border border-blue-200 rounded-lg p-4 mb-6">
+        <div class="flex items-center space-x-2">
+          <div class="bg-blue-600 text-white rounded-full p-2">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <p class="text-blue-800">
+            Paiement en masse commencé par: <strong>Adja</strong> |
+            <span class="text-sm">Soumis: 11:25, 21 January 2024</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Résumé des paiements de masse -->
+      <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6 shadow-sm">
+        <h4 class="text-lg font-semibold mb-4">Résumé des paiements de masse</h4>
+        <div class="grid grid-cols-5 gap-4 text-sm font-medium text-gray-700">
+          <div>Nombre des paiements valides</div>
+          <div>Montant total</div>
+          <div>Frais total</div>
+          <div>Total des noms non conformes</div>
+          <div>Total des comptes hors Wave</div>
+        </div>
+        <div class="grid grid-cols-5 gap-4 text-sm text-gray-800 mt-2">
+          <div>1024</div>
+          <div>CFA 2.000.000</div>
+          <div>CFA 20.000</div>
+          <div>0</div>
+          <div>0</div>
+        </div>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="flex justify-end space-x-4 mb-6">
+        <button class="btn bg-blue-500 text-white px-4 py-2 rounded-md" (click)="openModal()">
+          Afficher la liste des usagers
+        </button>
+        <button class="btn border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-4 py-2 rounded-md">
+          Rejeter le paiement
+        </button>
+        <button class="btn border border-green-500 text-green-500 hover:bg-green-500 hover:text-white px-4 py-2 rounded-md">
+          Confirmer le paiement
+        </button>
+      </div>
+      <!-- Inclusion du composant modal -->
+          <app-modal-usagers 
+          [showModal]="showModal()" 
+          [usagers]="usagers()" 
+          (close)="closeModal()" 
+          (confirmSelection)="onConfirmSelection($event)">
+        </app-modal-usagers>
+      <!-- Table des détails du paiement en masse -->
+      <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Détails du paiement en masse</h2>
+          <a href="#" class="text-blue-600 hover:underline">Téléchargez XLS</a>
+        </div>
+        
+        <!-- Table Responsive -->
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left text-sm text-gray-700">
+            <thead class="bg-gray-100 text-gray-600 font-medium">
+              <tr>
+                <th class="py-3 px-4">Nom du bénéficiaire</th>
+                <th class="py-3 px-4">Numéro de téléphone</th>
+                <th class="py-3 px-4">Montant</th>
+                <th class="py-3 px-4">Frais</th>
+                <th class="py-3 px-4">Raison pour paiement</th>
+                <th class="py-3 px-4">Identité national</th>
+                <th class="py-3 px-4">Référence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let transaction of transactions" class="border-b hover:bg-gray-50">
+                <td class="py-2 px-4">John Doe</td>
+                <td class="py-2 px-4">+1234567890</td>
+                <td class="py-2 px-4">CFA 5000</td>
+                <td class="py-2 px-4">CFA 200</td>
+                <td class="py-2 px-4">Services</td>
+                <td class="py-2 px-4">123456789</td>
+                <td class="py-2 px-4">Ref123</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-4">
+          <p class="text-sm text-gray-600">1-10 of 1024</p>
+          <div class="flex space-x-2">
+            <button class="px-2 py-1 border border-gray-300 rounded-md">❮</button>
+            <button class="px-2 py-1 border border-gray-300 rounded-md">❯</button>
+          </div>
+        </div>
       </div>
     </div>
-  
-    <!-- Barre de navigation mobile, visible uniquement sur les petits écrans -->
-    <app-mobile-navbar class="md:hidden"></app-mobile-navbar>  
   </div>
-  
+
+  <!-- Barre de navigation mobile, visible uniquement sur les petits écrans -->
+  <app-mobile-navbar class="md:hidden"></app-mobile-navbar>  
+</div>
