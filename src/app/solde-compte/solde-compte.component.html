@@ -9,52 +9,49 @@
     <!-- Zone de contenu principal où les composants de route s'afficheront -->
     <div class="flex-grow overflow-auto p-4 bg-gray-100">
       <!-- Zone du solde de compte -->
-      <div class="w-full h-32 bg-sky-500 flex justify-center items-center rounded-lg shadow-md mb-4">
+      <!-- <div class="w-full h-32 bg-sky-500 flex justify-center items-center rounded-lg shadow-md mb-4">
         <h2 class="text-white text-3xl font-semibold">Solde : 5000 €</h2>
+      </div> -->
+
+      <!-- Cartes bancaires disposées côte à côte avec styles responsives -->
+      <div class="flex flex-wrap justify-center gap-6">
+        <app-bank-card
+            *ngFor="let card of cards"
+            [type]="card.type === 'balance' || card.type === 'info' ? card.type : 'balance'"
+            [bankName]="card.bankName"
+            [balance]="card.balance ?? 0"
+            [logoUrl]="card.logoUrl"
+            [qrCodeUrl]="card.qrCodeUrl"
+            [userName]="card.userName ?? ''">
+        </app-bank-card>
+        
+      </div>
+      <!-- Ajouter le composant des boutons d'action -->
+      <div class="my-4 flex justify-end">
+        <app-action-buttons
+          (withdraw)="handleWithdraw()"
+          (transfer)="handleTransfer()"
+          (deposit)="handleDeposit()"
+        ></app-action-buttons>
       </div>
 
-      <!-- Carte bancaire stylisée avec code QR -->
-      <div class="max-w-md mx-auto w-full bg-white rounded-xl shadow-lg p-6 space-y-6 border border-gray-300">
-        <!-- Titre de la carte bancaire -->
-        <h3 class="text-blue-700 text-xl font-bold text-center">Carte Bancaire</h3>
-      
-        <!-- Logo de la banque et QR code -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between w-full space-y-4 md:space-y-0">
-          <!-- Logo de la banque -->
-          <div class="flex justify-center items-center space-x-2">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOKxIPYZLqBJeKt2WTLZ3ZU-Z9nQkRBXPGJQ&s" alt="Logo" class="h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-gray-300">
-            <span class="text-gray-500">BankName</span>
-          </div>
-      
-          <!-- Code QR -->
-          <div class="flex flex-col items-center">
-            <h4 class="text-gray-700 text-lg mb-1">Code QR</h4>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1234567890" alt="QR code" class="h-24 w-24 rounded-md border border-gray-200 shadow-sm">
-          </div>
-        </div>
-      
-        <!-- Informations de balance -->
-        <div class="stats bg-primary text-primary-content rounded-lg shadow-md p-4">
-          <div class="stat">
-            <div class="stat-title text-sm">Solde du compte</div>
-            <div class="stat-value text-lg">$89,400</div>
-            <div class="stat-actions mt-2">
-              <button class="btn btn-sm btn-success text-white">Ajouter des fonds</button>
-            </div>
-          </div>
-      
-          <div class="stat mt-4">
-            <div class="stat-title text-sm">Solde actuel</div>
-            <div class="stat-value text-lg">$89,400</div>
-            <div class="stat-actions mt-2 space-x-2">
-              <button class="btn btn-sm text-white bg-red-500 hover:bg-red-600">Retrait</button>
-              <button class="btn btn-sm text-white bg-blue-500 hover:bg-blue-600">Dépôt</button>
-            </div>
-          </div>
-        </div>
+      <!-- Boutons Précédent et Suivant visibles seulement en mobile -->
+      <div class="carousel-buttons md:hidden flex justify-between mt-4">
+        <button
+          (click)="showPrevious()"
+          [disabled]="currentIndex === 0"
+          class="btn btn-sm bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none disabled:opacity-50"
+        >
+          Précédent
+        </button>
+        <button
+          (click)="showNext()"
+          [disabled]="currentIndex === cards.length - 1"
+          class="btn btn-sm bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none disabled:opacity-50"
+        >
+          Suivant
+        </button>
       </div>
-      
-
       <hr class="my-6">
 
       <!-- Tableau stylisé pour afficher les transactions -->
@@ -71,7 +68,7 @@
           </thead>
           <tbody class="text-gray-700">
             <tr *ngFor="let transaction of transactions" class="border-b hover:bg-gray-100">
-              <td class="py-3 px-4  text-xl">{{ transaction.montant }} F cfa</td>
+              <td class="py-3 px-4 text-xl">{{ transaction.montant }} F cfa</td>
               <td class="py-3 px-4 text-sm">{{ transaction.Destinataire }}</td>
               <td class="py-3 px-4 text-sm">{{ transaction.agent }}</td>
               <td class="py-3 px-4 text-sm">{{ transaction.expediteur }}</td>

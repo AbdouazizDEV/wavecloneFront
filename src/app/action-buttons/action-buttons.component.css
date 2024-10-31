@@ -1,0 +1,18 @@
+.btn-withdraw-funds {
+    background-color: #f87171; /* Couleur rouge */
+  }
+  .btn-transfer {
+    background-color: #fbbf24; /* Couleur jaune */
+  }
+  .btn-deposit {
+    background-color: #34d399; /* Couleur verte */
+  }
+  
+  button {
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  

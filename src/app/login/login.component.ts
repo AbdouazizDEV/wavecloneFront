@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
-import { Router } from '@angular/router'; // Importer le Router
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';  // Assurez-vous du bon chemin d'import
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule], // Ajouter FormsModule dans les imports
+  imports: [NgIf, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -14,14 +15,13 @@ export class LoginComponent {
   phoneNumber: string = '';
   phoneSubmitted: boolean = false;
   code: string[] = ['', '', '', ''];
-  constructor(private router: Router) { } // Injecter le Router
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   // Méthode pour soumettre le numéro de téléphone
   onPhoneSubmit() {
-    if (this.phoneNumber.length === 9) { // Validation du format du numéro
+    if (this.phoneNumber.length === 9) {
       this.phoneSubmitted = true; // Afficher la section du code PIN
-      console.log('Connexion réussie avec le numéro :', this.phoneNumber);
-      // Logique additionnelle pour la connexion
     } else {
       alert("Veuillez entrer un numéro de téléphone valide.");
     }
@@ -30,11 +30,16 @@ export class LoginComponent {
   // Méthode pour soumettre le code PIN
   onLogin() {
     const pin = this.code.join('');
-    if (pin.length === 4) { // Vérifie que le code PIN est complet
-      console.log('Connexion réussie avec le code :', pin);
-      // Logique additionnelle pour la connexion
-      //redirection vers la page d'accueil
-      this.router.navigate(['/accueil']); // Maintenant, vous pouvez utiliser le router
+    if (pin.length === 4) {
+      this.authService.login(this.phoneNumber, pin).subscribe({
+        next: (response) => {
+          console.log('Connexion réussie', response);
+          this.router.navigate(['/accueil']);
+        },
+        error: (error) => {
+          alert(error.error?.error || 'Erreur lors de la connexion');
+        }
+      });
     } else {
       alert("Veuillez entrer un code à quatre chiffres.");
     }

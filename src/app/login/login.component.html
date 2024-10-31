@@ -1,82 +1,91 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-      <img src="assets/wave-logo.png" alt="Wave Logo" class="mx-auto mb-6 w-24 h-24" />
-  
-      <!-- Section du numéro de téléphone -->
-      <div *ngIf="!phoneSubmitted">
-        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Connexion</h2>
-        <form (ngSubmit)="onPhoneSubmit()">
-          <div class="mb-4">
-            <label for="phone" class="block text-gray-700">Numéro de téléphone</label>
-            <input
-              type="tel"
-              id="phone"
-              [(ngModel)]="phoneNumber"
-              name="phone"
-              required
-              pattern="[0-9]{10}"
-              class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
-              placeholder="Entrez votre numéro de téléphone"
-            />
-          </div>
-          <button
-            type="submit"
-            class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600 focus:outline-none"
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <img
+      src="assets/wave-logo.png"
+      alt="Wave Logo"
+      class="mx-auto mb-6 w-24 h-24"
+    />
+
+    <!-- Section du numéro de téléphone -->
+    <div *ngIf="!phoneSubmitted">
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+        Connexion
+      </h2>
+      <form (ngSubmit)="onPhoneSubmit()">
+        <div class="mb-4">
+          <label for="phone" class="block text-gray-700"
+            >Numéro de téléphone</label
           >
-            Continuer
-          </button>
-        </form>
-      </div>
-  
-      <!-- Section du code PIN -->
-      <div *ngIf="phoneSubmitted">
-        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Saisissez votre code</h2>
-        <form (ngSubmit)="onLogin()">
-          <div class="flex justify-center mb-6">
-            <input
-              type="text"
-              maxlength="1"
-              class="w-10 h-10 mx-1 text-center border rounded"
-              [(ngModel)]="code[0]"
-              name="code0"
-              required
-            />
-            <input
-              type="text"
-              maxlength="1"
-              class="w-10 h-10 mx-1 text-center border rounded"
-              [(ngModel)]="code[1]"
-              name="code1"
-              required
-            />
-            <input
-              type="text"
-              maxlength="1"
-              class="w-10 h-10 mx-1 text-center border rounded"
-              [(ngModel)]="code[2]"
-              name="code2"
-              required
-            />
-            <input
-              type="text"
-              maxlength="1"
-              class="w-10 h-10 mx-1 text-center border rounded"
-              [(ngModel)]="code[3]"
-              name="code3"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600 focus:outline-none"
-          >
-            Connexion
-          </button>
-        </form>
-        <div class="text-center mt-4 text-gray-600">
-          <a href="#" class="underline">Oublié ?</a>
+          <input
+            type="tel"
+            id="phone"
+            [(ngModel)]="phoneNumber"
+            name="phone"
+            required
+            pattern="[0-9]{10}"
+            class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
+            placeholder="Entrez votre numéro de téléphone"
+          />
         </div>
+        <button
+          type="submit"
+          class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600 focus:outline-none"
+        >
+          Continuer
+        </button>
+      </form>
+    </div>
+
+    <!-- Section du code PIN -->
+    <div *ngIf="phoneSubmitted">
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+        Saisissez votre code
+      </h2>
+      <form (ngSubmit)="onLogin()">
+        <div class="flex justify-center mb-6">
+          <input
+            type="text"
+            maxlength="1"
+            class="w-10 h-10 mx-1 text-center border rounded"
+            [(ngModel)]="code[0]"
+            name="code0"
+            required
+          />
+          <input
+            type="text"
+            maxlength="1"
+            class="w-10 h-10 mx-1 text-center border rounded"
+            [(ngModel)]="code[1]"
+            name="code1"
+            required
+          />
+          <input
+            type="text"
+            maxlength="1"
+            class="w-10 h-10 mx-1 text-center border rounded"
+            [(ngModel)]="code[2]"
+            name="code2"
+            required
+          />
+          <input
+            type="text"
+            maxlength="1"
+            class="w-10 h-10 mx-1 text-center border rounded"
+            [(ngModel)]="code[3]"
+            name="code3"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600 focus:outline-none"
+        >
+          Connexion
+        </button>
+      </form>
+      <div class="text-center mt-4 text-gray-600">
+        <a href="#" class="underline">Oublié ?</a>
       </div>
     </div>
   </div>
-  
+</div>

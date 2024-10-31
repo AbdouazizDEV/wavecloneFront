@@ -9,7 +9,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  @tailwind utilities;
  
  /* styles.css ou styles.scss */
-@import 'primeicons/primeicons.css';
 
 /* Masquer le sidebar sur mobile */
 aside {
@@ -29,8 +28,7 @@ aside {
       display: flex;
     }
   }
-  @import 'primeicons/primeicons.css';
-@import 'otros-estilos.css';
+
 
 /* Resto de las reglas CSS */
 *, ::before, ::after {

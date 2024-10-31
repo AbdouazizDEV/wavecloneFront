@@ -1,0 +1,67 @@
+/* Styles de base */
+:host {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: 12px;
+  }
+  
+  @media (min-width: 768px) {
+    :host {
+      width: 100%;
+      max-width: 600px;
+    }
+  }
+  
+  /* Carte bancaire horizontale */
+.balance-card-horizontal {
+    width: 100%;
+    max-width: 700px; /* ajuster la largeur selon les besoins */
+    height: 180px; /* hauteur plus courte pour le format horizontal */
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .balance-card-horizontal:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Informations de balance */
+  .stat-title {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+    color: #1f2937;
+    font-weight: 600;
+  }
+  
+  /* Bouton Ajouter des fonds */
+  .btn-add-funds {
+    background-color: #10b981;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-add-funds:hover {
+    background-color: #059669;
+  }
+  
+  /* QR Code dans la carte */
+  img[alt="QR code"] {
+    border: 1px solid #d1d5db;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

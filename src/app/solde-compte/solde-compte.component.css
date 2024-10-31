@@ -1,0 +1,73 @@
+/* Styles de base */
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .carousel-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .block {
+    display: block;
+  }
+  
+  @media (min-width: 768px) {
+    /* Disposition côte à côte pour les écrans moyens et plus */
+    .carousel-container {
+      flex-direction: row;
+    }
+  
+    .carousel {
+      display: block;
+    }
+  
+    .carousel-buttons {
+      display: none;
+    }
+  }
+  /* Flexbox pour centrer les cartes horizontalement */
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Styles pour les boutons de navigation mobile */
+  .carousel-buttons button {
+    transition: background-color 0.3s ease;
+  }
+  
+  .carousel-buttons button:hover {
+    background-color: #3b82f6; /* Couleur bleu plus sombre au survol */
+  }
+  
+  .carousel-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Responsivité des cartes bancaires pour qu’elles ne changent pas de forme en mobile */
+  @media (max-width: 768px) {
+    .flex-wrap {
+      overflow-x: scroll;
+      padding: 0 1rem;
+    }
+    
+    .flex-wrap > app-bank-card {
+      min-width: 80%;
+      max-width: 90%;
+      flex-shrink: 0;
+    }
+  }
+  
