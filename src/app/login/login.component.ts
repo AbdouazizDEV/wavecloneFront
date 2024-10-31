@@ -34,7 +34,9 @@ export class LoginComponent {
       this.authService.login(this.phoneNumber, pin).subscribe({
         next: (response) => {
           console.log('Connexion réussie', response);
-          this.router.navigate(['/accueil']);
+          this.router.navigate(['/accueil'])
+            .then(success => console.log('Redirection réussie:', success))
+            .catch(err => console.error('Erreur de redirection:', err));
         },
         error: (error) => {
           alert(error.error?.error || 'Erreur lors de la connexion');
@@ -44,4 +46,6 @@ export class LoginComponent {
       alert("Veuillez entrer un code à quatre chiffres.");
     }
   }
+  
+  
 }
