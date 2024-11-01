@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { AuthService } from '../auth.service'; // Assurez-vous que le chemin est correct
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,12 +10,20 @@ import { Router } from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
   isDropdownOpen = signal(false);
   isSidebarOpen = signal(false);
   isSearchVisible = signal(false);
+  user: any = null;
 
   constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    // Souscrit aux informations de l'utilisateur
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   toggleSearch() {
     this.isSearchVisible.set(!this.isSearchVisible());
@@ -34,10 +42,9 @@ export class NavBarComponent {
     this.authService.logout().subscribe({
       next: () => {
         console.log('Déconnexion réussie');
-        // Redirigez vers la page de login ou une autre page
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
       },
-      error: (err:Error) => {
+      error: (err: Error) => {
         console.error('Erreur lors de la déconnexion', err);
       }
     });

@@ -1,4 +1,3 @@
-
 <nav class="bg-white p-2 flex justify-between items-center shadow-md">
   <!-- Logo avec une icône et un texte -->
   <div class="flex items-center space-x-2">
@@ -19,15 +18,14 @@
     </div>
   </div>
   
-
   <!-- Informations de l'utilisateur et icône pour le menu déroulant -->
   <div class="relative flex items-center space-x-2">
     <div class="w-8 h-8 bg-blue-500 text-white flex items-center justify-center rounded-full">
-      <span class="font-bold">D</span>
+      <span class="font-bold">{{ user?.prenom[0] || 'U' }}</span>
     </div>
     <div class="text-black">
-      <p class="font-medium">Bachounet</p>
-      <p class="text-sm text-gray-500">Web Builders</p>
+      <p class="font-medium">{{ user?.prenom }} {{ user?.nom }}</p>
+      <p class="text-sm text-gray-500">{{ user?.role }}</p>
     </div>
 
     <!-- Icône flèche avec action de clic pour ouvrir le menu déroulant -->

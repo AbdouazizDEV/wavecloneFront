@@ -6,6 +6,7 @@ import {MobileNavbarComponent} from '../mobile-navbar/mobile-navbar.component';
 import { CommonModule } from '@angular/common';
 import {BankCardComponent} from '../bank-card/bank-card.component';
 import {ActionButtonsComponent} from '../action-buttons/action-buttons.component';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-solde-compte',
   standalone: true,
@@ -14,6 +15,8 @@ import {ActionButtonsComponent} from '../action-buttons/action-buttons.component
   styleUrl: './solde-compte.component.css'
 })
 export class SoldeCompteComponent {
+  user: any; // Variable pour stocker les données utilisateur
+
   transactions = [
     {
       montant: 1000,
@@ -93,5 +96,18 @@ export class SoldeCompteComponent {
   handleDeposit() {
     console.log('Action Dépôt exécutée');
     // Ajouter ici la logique de dépôt
+  }
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    // Souscrire aux informations utilisateur
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+      if (user) {
+        // Mettre à jour le solde dans la carte si utilisateur est connecté
+        this.cards[0].balance = user.solde;
+        this.cards[0].userName = `${user.prenom} ${user.nom}`;
+      }
+    });
   }
 }
