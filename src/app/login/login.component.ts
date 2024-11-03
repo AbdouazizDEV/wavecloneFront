@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';  // Assurez-vous du bon chemin d'import
+import { AuthService } from '../auth.service';
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [NgIf, FormsModule, RegisterModalComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -15,13 +16,14 @@ export class LoginComponent {
   phoneNumber: string = '';
   phoneSubmitted: boolean = false;
   code: string[] = ['', '', '', ''];
+  showRegisterModal: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   // Méthode pour soumettre le numéro de téléphone
   onPhoneSubmit() {
     if (this.phoneNumber.length === 9) {
-      this.phoneSubmitted = true; // Afficher la section du code PIN
+      this.phoneSubmitted = true;
     } else {
       alert("Veuillez entrer un numéro de téléphone valide.");
     }
@@ -46,6 +48,14 @@ export class LoginComponent {
       alert("Veuillez entrer un code à quatre chiffres.");
     }
   }
-  
-  
+
+  // Méthode pour ouvrir le modal d'inscription
+  openRegisterModal() {
+    this.showRegisterModal = true;
+  }
+
+  // Méthode pour fermer le modal d'inscription
+  closeRegisterModal() {
+    this.showRegisterModal = false;
+  }
 }
